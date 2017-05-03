@@ -2,4 +2,7 @@
     <string name="app_name">kanpai</string>
 
     <string name="button_reservation">予約する</string>
+    <string name="button_yes">はい</string>
+    <string name="button_no">いいえ</string>
+    <string name="message_request_reservation">席に空きがあるか確認しますか？</string>
 </resources>
