@@ -5,7 +5,7 @@
 
         <variable
             name="owner"
-            type="com.sake.kanpai.MainActivity" />
+            type="com.sake.kanpai.activity.MainActivity" />
     </data>
 
     <RelativeLayout

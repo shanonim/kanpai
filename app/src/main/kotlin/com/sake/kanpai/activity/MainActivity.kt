@@ -1,10 +1,11 @@
-package com.sake.kanpai
+package com.sake.kanpai.activity
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import com.sake.kanpai.R
 import com.sake.kanpai.databinding.ActivityMainBinding
+import com.sake.kanpai.fragment.ReservationDialogFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickReservationButton() {
-//        Toast.makeText(this, "tapped", Toast.LENGTH_SHORT).show()
         val fragment = ReservationDialogFragment()
         fragment.show(supportFragmentManager, "ReservationDialogFragment")
     }
