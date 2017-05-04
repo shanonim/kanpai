@@ -1,12 +1,17 @@
 package com.sake.kanpai.activity
 
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Toast
 import com.sake.kanpai.MenuAdapter
 import com.sake.kanpai.R
 import com.sake.kanpai.databinding.ActivityOrderBinding
+import com.sake.kanpai.databinding.FooterListBinding
+import com.sake.kanpai.fragment.OrderDialogFragment
+import com.sake.kanpai.fragment.ReservationDialogFragment
 import com.sake.kanpai.model.MenuListResponse
 import com.sake.kanpai.network.KanpaiApi
 import retrofit2.Call
@@ -19,11 +24,13 @@ class OrderActivity : AppCompatActivity() {
 
     private var kanpaiApi: KanpaiApi? = null
     private var binding: ActivityOrderBinding? = null
+    private var footer: FooterListBinding? = null
     private var list: MenuListResponse? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
+
 
         val listAdapter = MenuAdapter(applicationContext)
 
@@ -42,7 +49,9 @@ class OrderActivity : AppCompatActivity() {
                 binding?.listview?.adapter = listAdapter
 
                 binding?.setOnItemClick { adapterView, view, position, l ->
-                    Toast.makeText(applicationContext, listAdapter.menus[position].name, Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(applicationContext, listAdapter.menus[position].name, Toast.LENGTH_SHORT).show()
+                    val fragment = OrderDialogFragment(listAdapter.menus[position])
+                    fragment.show(supportFragmentManager, "OrderDialogFragment")
                 }
             }
 
@@ -50,5 +59,9 @@ class OrderActivity : AppCompatActivity() {
                 t?.printStackTrace()
             }
         })
+    }
+
+    fun onClickOrder() {
+
     }
 }
