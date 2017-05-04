@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.sake.kanpai.databinding.ItemListViewBinding
 import com.sake.kanpai.model.MenuResponse
+import com.squareup.picasso.Picasso
 
 class MenuAdapter(private val context: Context) : BaseAdapter() {
     var menus: List<MenuResponse> = emptyList()
@@ -26,6 +27,9 @@ class MenuAdapter(private val context: Context) : BaseAdapter() {
             binding = convertView.tag as ItemListViewBinding
         }
         binding?.menu = getItem(position) as MenuResponse
+
+        // set image
+        Picasso.with(context).load(menus[position].pict).into(binding?.imageMenu)
 
         return binding.root
     }

@@ -9,36 +9,50 @@
             type="com.sake.kanpai.model.MenuResponse" />
     </data>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/text_view_kemono_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="500dp"
-            android:height="30dp"
-            android:gravity="center_vertical"
-            android:text="@{menu.name}"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-            tools:text="ビール" />
+        <ImageView
+            android:id="@+id/image_menu"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp" />
 
-        <TextView
-            android:id="@+id/text_view_kemono_words"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_kemono_name"
-            android:width="500dp"
-            android:height="30dp"
-            android:gravity="center_vertical"
-            android:text="@{Integer.toString(menu.price)}"
-            android:textColor="@android:color/black"
-            tools:text="980" />
-    </RelativeLayout>
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="500dp"
+                android:height="30dp"
+                android:gravity="center_vertical"
+                android:text="@{menu.name}"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                tools:text="ビール" />
+
+            <TextView
+                android:id="@+id/text_view_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_name"
+                android:width="500dp"
+                android:height="30dp"
+                android:gravity="center_vertical"
+                android:text="@{Integer.toString(menu.price)}"
+                android:textColor="@android:color/black"
+                tools:text="980" />
+        </RelativeLayout>
+    </LinearLayout>
 </layout>
