@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.mlkcca.client.DataElementValue
+import com.mlkcca.client.MilkCocoa
 import com.sake.kanpai.R
 import com.sake.kanpai.databinding.ActivityMainBinding
 import com.sake.kanpai.fragment.ReservationDialogFragment
@@ -33,9 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         bluetoothManager.init()
 
-        timer(period = 1000) {
-            checkReservationStatus()
-        }
+//        timer(period = 1000) {
+//            checkReservationStatus()
+//        }
     }
 
     fun onClickReservationButton() {
@@ -66,4 +68,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        })
     }
+
+
 }

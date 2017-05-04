@@ -5,18 +5,20 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.os.Handler;
-import android.os.ParcelUuid;
 import android.widget.Toast;
+
+import com.mlkcca.client.DataElementValue;
+import com.mlkcca.client.MilkCocoa;
 
 public class BLEManager {
     private Context context;
-
     public BLEManager(Context context) {
         this.context = context;
     }
 
     private BluetoothAdapter mBluetoothAdapter;
     private boolean bleFlg;
+    private boolean isPush;
     private Handler mHandler = new Handler();
 
     public void search() {
@@ -49,18 +51,17 @@ public class BLEManager {
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
-//            getScanData(scanRecord);
-            ParcelUuid[] uuids = device.getUuids();
-            if (uuids != null) {
-                for (ParcelUuid uuid : uuids) {
-                    if (uuid.toString().equals("00fe6f-00-100-800-0805f9b34fb")) {
-                        Toast.makeText(context, "信号を受信しました。", Toast.LENGTH_SHORT).show();
-                        closeScanningBLE();
-                        break;
-                    }
-                }
-            }
-
+            getScanData(scanRecord);
+//            ParcelUuid[] uuids = device.getUuids();
+//            if (uuids != null) {
+//                for (ParcelUuid uuid : uuids) {
+//                    if (uuid.toString().equals("00fe6f-00-100-800-0805f9b34fb")) {
+//                        Toast.makeText(context, "信号を受信しました。", Toast.LENGTH_SHORT).show();
+//                        closeScanningBLE();
+//                        break;
+//                    }
+//                }
+//            }
         }
     };
 
@@ -87,10 +88,13 @@ public class BLEManager {
                 + Integer.toHexString(scanRecord[23] & 0xff)
                 + Integer.toHexString(scanRecord[24] & 0xff);
 
-        if (uuid.equals("00fe6f-00-100-800-0805f9b34fb")) {
+        if (uuid.equals("d0d2ce24-9efc-11e5-82c4-1c6a7a17ef38")) {
             Toast.makeText(context, "信号を受信しました。", Toast.LENGTH_SHORT).show();
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
             bleDisable();
+            if (!isPush) {
+                pushMilkcocoa();
+            }
         }
     }
 
@@ -110,5 +114,14 @@ public class BLEManager {
         if (bleFlg != mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.disable();
         }
+    }
+
+    private void pushMilkcocoa() {
+        MilkCocoa milkCocoa = new MilkCocoa("leadii5pbr0b.mlkcca.com");
+        DataElementValue params = new DataElementValue();
+        params.put("state", 1);
+        milkCocoa.dataStore("yoro").push(params);
+        Toast.makeText(context, "来店しました。", Toast.LENGTH_SHORT).show();
+        isPush = true;
     }
 }

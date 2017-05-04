@@ -7,15 +7,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.widget.Toast
+import com.mlkcca.client.DataElementValue
+import com.mlkcca.client.MilkCocoa
 import com.sake.kanpai.R
 import com.sake.kanpai.activity.OrderActivity
-import com.sake.kanpai.model.MenuListResponse
 import com.sake.kanpai.network.KanpaiApi
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 class ReservationDialogFragment : DialogFragment() {
 
@@ -38,7 +34,17 @@ class ReservationDialogFragment : DialogFragment() {
 
     fun onClickYes() {
         // TODO: API call
+        pushMilkcocoa()
+
         val intent = Intent(context, OrderActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun pushMilkcocoa() {
+        val milkCocoa = MilkCocoa("leadii5pbr0b.mlkcca.com")
+        val params = DataElementValue()
+        params.put("state", 0)
+        milkCocoa.dataStore("yoro").push(params)
+        Toast.makeText(context, "予約しました。", Toast.LENGTH_SHORT).show()
     }
 }

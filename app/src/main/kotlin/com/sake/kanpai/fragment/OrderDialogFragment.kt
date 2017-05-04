@@ -5,6 +5,9 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.widget.Toast
+import com.mlkcca.client.DataElementValue
+import com.mlkcca.client.MilkCocoa
 import com.sake.kanpai.R
 import com.sake.kanpai.model.MenuResponse
 import com.sake.kanpai.network.KanpaiApi
@@ -28,6 +31,6 @@ class OrderDialogFragment(menuResponse: MenuResponse) : DialogFragment() {
     }
 
     fun onClickYes() {
-        // TODO: API call
+        // TODO: API call {
     }
 }

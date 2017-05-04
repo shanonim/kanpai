@@ -1,17 +1,12 @@
 package com.sake.kanpai.activity
 
 import android.databinding.DataBindingUtil
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.widget.Toast
 import com.sake.kanpai.MenuAdapter
 import com.sake.kanpai.R
 import com.sake.kanpai.databinding.ActivityOrderBinding
-import com.sake.kanpai.databinding.FooterListBinding
 import com.sake.kanpai.fragment.OrderDialogFragment
-import com.sake.kanpai.fragment.ReservationDialogFragment
 import com.sake.kanpai.model.MenuListResponse
 import com.sake.kanpai.network.KanpaiApi
 import retrofit2.Call
@@ -24,7 +19,6 @@ class OrderActivity : AppCompatActivity() {
 
     private var kanpaiApi: KanpaiApi? = null
     private var binding: ActivityOrderBinding? = null
-    private var footer: FooterListBinding? = null
     private var list: MenuListResponse? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +56,5 @@ class OrderActivity : AppCompatActivity() {
     }
 
     fun onClickOrder() {
-
     }
 }
